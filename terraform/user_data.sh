@@ -1,5 +1,4 @@
 #!/bin/bash
-
 sudo apt-get update
 sudo apt-get install -y default-jre
   # Download and install Kafka (replace the URL with the actual Kafka download link)
