@@ -1,0 +1,24 @@
+# Follow these setps for a quick kafka start
+
+# Allocate memory
+export KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"
+
+# Change config/server.properties to public ec2 IP
+cd config
+sudo nano server.properties
+Change adverstise listener host to public ip
+
+# 1. Start zoo keeper on a new terminal
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+# 2. Start kafka broker on another terminal
+bin/kafka-server-start.sh config/server.properties
+
+# 3. Create a topic (optional)
+bin/kafka-topics.sh --create --topic my_topic --bootstrap-server localhost:9092 --partitions 3 --replication-factor 1
+
+# 4. Create console consumer on another terminal this will show the message from a producer client
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my_topic
+
+# 5 .Create console producer on a new terminal this will send the messages to a consumer
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic my_topic
