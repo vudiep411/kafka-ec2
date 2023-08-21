@@ -3,11 +3,17 @@ resource "aws_instance" "my-tf-server" {
   ami = "ami-0bd4d695347c0ef88"
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.vu-sg.id]
-  user_data = file("user_data.sh")
+  user_data = data.template_file.user_data.rendered
   tags = {
     Name= "kafka"
   }
 }
+
+# User Data
+data "template_file" "user_data" {
+    template = file("${path.module}/user_data.sh")
+}
+
 
 # Security Group
 resource "aws_security_group" "vu-sg" {
