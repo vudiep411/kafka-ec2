@@ -45,22 +45,22 @@ jobs:
             -backend-config="region=${{ env.AWS_REGION }}" \
             -backend-config="dynamodb_table=${{ env.STATE_LOCK_DYNAMODB_TABLE }}" \
             
-      # - name: Terraform Show
-      #   run: | 
-      #     cd terraform
-      #     terraform show
+      - name: Terraform Show
+        run: | 
+          cd terraform
+          terraform show
 
-      # - name: Plan Terraform changes
-      #   run: |
-      #     cd terraform
-      #     terraform plan -lock=false 
-
-      # - name: Apply Terraform changes
-      #   run: |
-      #     cd terraform
-      #     terraform apply -auto-approve
-
-      - name: Terraform Destroy
+      - name: Plan Terraform changes
         run: |
           cd terraform
-          terraform destroy -auto-approve
+          terraform plan -lock=false 
+
+      - name: Apply Terraform changes
+        run: |
+          cd terraform
+          terraform apply -auto-approve
+
+      # - name: Terraform Destroy
+      #   run: |
+      #     cd terraform
+      #     terraform destroy -auto-approve
