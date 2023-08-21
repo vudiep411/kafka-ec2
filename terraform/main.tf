@@ -11,10 +11,10 @@ resource "aws_instance" "my-tf-server" {
 
 # Security Group
 resource "aws_security_group" "vu-sg" {
-  name = "tf-security"
+  name = "kafka-security"
   ingress {
-    from_port   = 9092
-    to_port     = 9092
+    from_port   = 0
+    to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
