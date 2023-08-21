@@ -21,6 +21,7 @@ jobs:
       STATE_FILE_KEY: kafka-dev/terraform.tfstate
       STATE_LOCK_DYNAMODB_TABLE: terraform-state-locking
 
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.modified, './terraform') }}
     steps:
       - uses: actions/checkout@v3
       
